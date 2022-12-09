@@ -16,11 +16,11 @@ export const Register = (props) => {
         <div className='mainForms'>
             <form className='register-form' onSubmit={handleSubmit}>
                 <label htmlFor="name">Full Name Plz</label>
-                <input value={name} name="name" id="name" placeholder="full name"/>
+                <input value={name} autoComplete='off' name="name" id="name" placeholder="full name" required/>
                 <label htmlFor="email">Email</label>
-                <input type="email" placeholder="youremail@mail.com" id="email" name="email" />
+                <input type="email" autoComplete='off' placeholder="youremail@mail.com" id="email" name="email" required />
                 <label htmlFor="password">Password</label>
-                <input type="password" placeholder="******" id="password" name="password" />
+                <input type="password" autoComplete='off' placeholder="******" id="password" name="password" required />
                 <button type="submit">Login</button>
             </form>
             <button onClick={() => props.offOnForm('login')}>Already registered? Login here!</button>

@@ -4,12 +4,11 @@
  */
 exports.seed = async function(knex) {
   // Deletes ALL existing entries
+  await knex.schema.raw('TRUNCATE actual_inventory CASCADE')
   await knex('actual_inventory').del()
   await knex('actual_inventory').insert([
-    {id: 1, idpk: 'number'},
-    {id: 2, userId: 'number'},
-    {id: 3, itemName: 'apples'},
-    {id: 4, description: 'fruit'},
-    {id: 5, quantity: 10 }
+    {id: 1, userId:'Blade', itemName:'fruit', description:'apples, bananas, grapes', quantity: 20},
+    {id: 2, userId:'Laser', itemName:'meat', description:'ck, steak, pork', quantity: 15},
+    {id: 3, userId:'Taser', itemName:'home tools', description:'hammers, tape, wrench', quantity: 20}
   ]);
 };

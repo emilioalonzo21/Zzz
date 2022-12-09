@@ -5,10 +5,10 @@
 exports.up = function(knex) {
     return knex.schema.createTable('actual_inventory', table => {
         table.increments();
-        table.integer('userId', 250); //number
-        table.integer('itemName'); //number
+        table.string('userId', 250); //number
+        table.string('itemName'); //number
         table.string('description') //string
-        table.integer('quantity')
+        table.integer('quantity') //number
         table.timestamps(true, true); // adds created_at and updated_at
     })
 };

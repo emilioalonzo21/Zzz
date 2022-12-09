@@ -8,7 +8,7 @@ exports.seed = async function(knex) {
   await knex('login_info').insert([
     {id: 1, firstName: 'Blade', lastName:'Doe', userName:'blade.doe69', password:'password'},
     {id: 2, firstName: 'John', lastName:'Kelly', userName:'john.kelly69', password:'password'},
-    {id: 3, firstName: '', lastName:'Doe', userName:'blade.doe69', password:'password'},
+    {id: 3, firstName: 'Jake', lastName:'Doe', userName:'jake.doe69', password:'password'},
 
 
   ]);

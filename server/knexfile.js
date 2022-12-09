@@ -2,50 +2,62 @@
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
+ * 
  */
+
+const HOST = process.env.DATABASE_HOST || '127.0.0.1';
+const USER = process.env.POSTGRES_USER || 'postgres';
+const PASSWORD = process.env.POSTGRES_PASSWORD || 'docker';
+const DATABASE = process.env.POSTGRES_DB || 'store_inventory';
+const PORT = process.env.PORT || '5432';
 module.exports = {
 
   development: {
     client: 'postgresql',
     connection: {
-      host: '127.0.0.1',
-      password: 'docker',
-      user: 'postgres',
-      port: 5432,
-      database: 'inventory_store_info1'
+      host: 'HOST',
+      password: 'PASSWORD',
+      user: 'USER',
+      port: PORT,
+      database: 'DATABASE'
+    },
+    migrations: {
+    directory: './server/migrations'
+    },
+    seeds: {
+      directory:'./server/seeds'
     }
-  },
+},
 
   staging: {
-    client: 'postgresql',
+  client: 'postgresql',
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
+    database: 'my_db',
+      user: 'username',
+        password: 'password'
   },
-
-  production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
+  pool: {
+    min: 2,
       max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
+  },
+  migrations: {
+    tableName: 'knex_migrations'
   }
+},
+
+production: {
+  client: 'postgresql',
+    connection: process.env.DATABASE_URL+'?ssl=no-verify',
+  pool: {
+    min: 2,
+      max: 10
+  },
+  migrations: {
+    directory: './server/migrations'
+    },
+    seeds: {
+      directory:'./server/seeds'
+    }
+}
 
 };

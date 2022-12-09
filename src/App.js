@@ -1,33 +1,43 @@
+
+
 import { Login } from './Login';
 import { Register } from './Register';
-import React, { useState } from 'react';
+import { Inventory } from './Inventory';
+import React, { useEffect, useState } from 'react';
+import { Router } from 'express';
 
-// class App extends React.Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       checkBoxes: [],
-//       favoritesCheckBoxes: [],
-//       defaultList: [],
-//       favoritesList: [],
-//       message: ''
-//     }
-//   }
+
 
 function App() {
   //this controls the form displays, so itll show which form.
+  const [expressData, setExpressData] = useState([{}])
   const [currentForm, setCurrentForm] = useState('login')
   const onOffForm = (formName) => {
     setCurrentForm(formName);
   }
-  return (
-
-    <div className='App'>
-      <h1>Store Inventory System</h1>
-      {
-        currentForm === "login" ? <Login offOnForm={onOffForm} /> : <Register offOnForm={onOffForm} />
+  //useEffect is mostly used for fetchs! i think
+  useEffect(() => {
+    fetch('/inventory').then(
+      response => response.json()
+    ).then(
+      data => {
+        setExpressData(data)
       }
-    </div>
+    )
+    //pass in an empty array because it will only run on the first render
+  }, [])
+
+  return (
+    <Router>
+      <switch>
+        <div className='App'>
+          <h1>Food n Stuff Inventory System</h1>
+          {
+            currentForm === "login" ? <Login offOnForm={onOffForm} /> : <Register offOnForm={onOffForm} />
+          }
+        </div>
+      </switch>
+    </Router >
   )
 }
 

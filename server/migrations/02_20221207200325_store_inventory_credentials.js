@@ -5,10 +5,10 @@
 exports.up = function (knex) {
     return knex.schema.createTable('login_info', table => {
         table.increments();
-        table.string('name', 250);
+        table.string('firstName', 250);
         table.string('lastName');
         table.string('password')
-        table.date('userName');
+        table.string('userName');
         table.timestamps(true, true); // adds created_at and updated_at
 
     })
